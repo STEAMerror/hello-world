@@ -1,27 +1,30 @@
 <html>  
 <head>  
 <meta http-equiv="Content-Type" content="text/html; Charset=UTF-8">  
-<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.js"></script>
+<script 
+    src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.js">
+    engine="text/javascript" src="src/jsScripts/main.js">
+</script>
 <title>Юный пользователь</title>
 <link href="css/style.css" rel="stylesheet" type="text/css" />  
 </head>  
 
 <form>  
-    <input class="btn" id="btn1" type="button" value="обновить">   
-    
+    <input class="btn" id="btn1" type="button" value="обновить/пользователь">   
+    <input class="btn" id="btn3" type="button" value="админ"> 
 </form>  
 <body>  
 
 
-
-<form id="myform" method="post" action="javascript:void(0);">
+<div class="forms">
+<form class="forma" id="myform" method="post" action="javascript:void(0);">
 <p>Фамилия: <input type="text" name="fam" /></p>
  <p>Имя: <input type="text" name="name" /></p>
  <p>Отчество: <input type="text" name="otchestvo" /></p>
  <p>Статус: <input type="text" name="status" /></p>
  <p><input type="submit" class="btn" id="btn2" value="поиск"/></p>
 </form>
-
+</div>
 <div id="tabl"> 
 
 <?php	
@@ -42,6 +45,7 @@ mysqli_close ($con);
 <script>  
     $(document).ready(function(){  
         $('#btn1').click(function(){
+            $('.forms').css('display','initial') ;
             $('#tabl').each(function(){
                 $(this).html('');
                 });
@@ -59,7 +63,7 @@ mysqli_close ($con);
                 });
             });      
         $("#myform").submit(function() {
-            alert('SEND');
+            
             var form_data = $(this).serialize();
             $.ajax({
                 type: "POST",
@@ -71,7 +75,23 @@ mysqli_close ($con);
                     console.log(html); 
                 }
             });
-        });   
+        });
+        $('#btn3').click(function(){
+            $('.forms').css('display','none') ;
+            $('#tabl').each(function(){
+                $(this).html('');
+                });
+            // $('#myform').each(function(){
+            //     $(this).html('');
+            //     });
+            $.ajax({
+                url: "src/php-scripts/admin.php",  
+                cache: false,
+                success: function(html){  
+                    $("#content").html(html);  
+                }  
+            });  
+        });    
     });  
 </script>   
 <div id="content"></div>  

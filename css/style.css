@@ -1,8 +1,14 @@
 body {
     background-color: #999;
-   
-}
 
+}
+.forms {
+  display: none;
+}
+h1 {
+  margin-left: 20;
+  margin-top: 10;
+}   
 .btn {
     text-decoration: none;
     outline: none;
@@ -26,7 +32,9 @@ body {
     background-position: 0 0;
   }
 
-#myform {
+
+
+.forma {
     text-decoration: none;
     outline: none;
     display: inline-block;
@@ -41,5 +49,6 @@ body {
     background-size: 200% auto;
     box-shadow: 0 0 20px rgba(0,0,0,.1);
     transition: .5s;
+    color: #000
   }
-  #myform:hover {background-position: right center;}
+  .forma:hover {background-position: right center;}
